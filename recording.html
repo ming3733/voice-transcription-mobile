@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="icon" href="data:," />
+    <title>语音转文字 - 录音中</title>
+    <link rel="stylesheet" href="./styles.css?v=10" />
+  </head>
+  <body>
+    <main class="viewport" aria-label="语音转文字录音中页面">
+      <section class="stage recording-stage" data-node-id="48:2" data-name="移动端-录音中">
+        <img class="workspace-bg" src="./assets/bg.png" alt="" />
+        <img class="center-card" src="./assets/card-bg.png" alt="" />
+
+        <div class="phone-surface" aria-hidden="true"></div>
+        <div class="mobile-shell" aria-hidden="true">
+          <img src="./assets/phone-frame.png" alt="" />
+        </div>
+
+        <div class="recording-visual" aria-hidden="true">
+          <div class="recording-mic-wrap">
+            <svg class="record-progress" viewBox="0 0 102 102">
+              <circle class="record-progress-track" cx="51" cy="51" r="49.222"></circle>
+              <circle class="record-progress-value" id="recordProgress" cx="51" cy="51" r="49.222"></circle>
+            </svg>
+            <div class="recording-mic-core">
+              <img src="./assets/mic-icon.svg" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="listen-pill" aria-label="录音状态">
+          <span></span>
+          正在聆听…
+        </div>
+
+        <div class="timer-line" aria-label="录音计时">
+          <strong id="recordTimer">00:04</strong>
+          <span>/ 00:10</span>
+        </div>
+
+        <video class="waveform-video" src="./assets/waveform.mp4" autoplay muted loop playsinline aria-hidden="true"></video>
+
+        <button class="primary-action finish-action" type="button" id="finishButton">
+          <span class="finish-label">完成</span>
+          <img class="loading-icon" src="./assets/loading-spinner.svg" alt="" />
+        </button>
+      </section>
+    </main>
+
+    <script src="./recording.js?v=6"></script>
+  </body>
+</html>
