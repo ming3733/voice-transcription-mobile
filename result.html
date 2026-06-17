@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="icon" href="data:," />
+    <title>语音转文字 - 识别结果</title>
+    <link rel="stylesheet" href="./styles.css?v=10" />
+  </head>
+  <body>
+    <main class="viewport" aria-label="语音转文字识别结果页面">
+      <section class="stage result-stage" data-node-id="49:91" data-name="移动端-识别结果">
+        <img class="workspace-bg" src="./assets/bg.png" alt="" />
+        <img class="center-card" src="./assets/card-bg.png" alt="" />
+
+        <div class="phone-surface" aria-hidden="true"></div>
+        <div class="mobile-shell" aria-hidden="true">
+          <img src="./assets/phone-frame.png" alt="" />
+        </div>
+
+        <h1 class="result-title">识别结果</h1>
+
+        <label class="result-box">
+          <textarea aria-label="识别结果">你好，欢迎学习编程，今天我们一起来写一个有趣的小程序吧！</textarea>
+        </label>
+
+        <button class="secondary-action" type="button" id="rerecordButton">重新录音</button>
+        <button class="confirm-action" type="button" id="confirmButton">确认</button>
+      </section>
+    </main>
+
+    <script src="./result.js?v=3"></script>
+  </body>
+</html>
