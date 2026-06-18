@@ -130,16 +130,8 @@ button {
   min-height: 0;
   border-radius: 0.4rem;
   background: linear-gradient(180deg, #e7f8ff 0%, #ffffff 43%, #ffffff 100%);
-  overflow-x: hidden;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  overflow: hidden;
   z-index: 1;
-}
-
-.panel::-webkit-scrollbar {
-  display: none;
 }
 
 .panel-title {
@@ -155,13 +147,6 @@ button {
   text-align: center;
   letter-spacing: 0;
   white-space: nowrap;
-}
-
-.panel::before {
-  display: block;
-  width: 1px;
-  height: 10.76rem;
-  content: "";
 }
 
 .mic-visual {
