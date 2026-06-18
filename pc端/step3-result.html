@@ -219,7 +219,7 @@
       <div class="title">识别结果</div>
 
       <div class="result-box">
-        <textarea class="result-input" aria-label="识别结果">你好，欢迎学习编程，今天我们一起来写一个有趣的小程序吧！</textarea>
+        <textarea class="result-input" aria-label="识别结果" maxlength="120">你好，欢迎学习编程，今天我们一起来写一个有趣的小程序吧！</textarea>
       </div>
 
       <button class="action rerecord" type="button" id="rerecordBtn">重新录音</button>
@@ -231,14 +231,24 @@
     var resultToastFlag = "voiceResultToast";
     var failureToast = document.getElementById("failureToast");
     var toastTimer = null;
+    var resultTextMaxLength = 120;
+    var defaultResultText = "你好，欢迎学习编程，今天我们一起来写一个有趣的小程序吧！";
+
+    function getResultInput() {
+      return document.querySelector(".result-input");
+    }
+
+    function setResultText(value) {
+      var resultInput = getResultInput();
+      if (resultInput) {
+        resultInput.value = value.slice(0, resultTextMaxLength);
+      }
+    }
 
     function showFailureToast() {
       if (!failureToast) return;
 
-      var resultInput = document.querySelector(".result-input");
-      if (resultInput) {
-        resultInput.value = "";
-      }
+      setResultText("");
 
       window.clearTimeout(toastTimer);
       failureToast.classList.add("is-visible");
@@ -248,6 +258,15 @@
         failureToast.classList.remove("is-visible");
         failureToast.setAttribute("aria-hidden", "true");
       }, 2000);
+    }
+
+    var resultInput = getResultInput();
+    if (resultInput) {
+      resultInput.addEventListener("input", function () {
+        if (resultInput.value.length > resultTextMaxLength) {
+          resultInput.value = resultInput.value.slice(0, resultTextMaxLength);
+        }
+      });
     }
 
     document.getElementById("rerecordBtn").addEventListener("click", function () {
@@ -262,9 +281,12 @@
       if (sessionStorage.getItem(resultToastFlag) === "manual-finish") {
         sessionStorage.removeItem(resultToastFlag);
         window.setTimeout(showFailureToast, 120);
+      } else {
+        setResultText(defaultResultText);
       }
     } catch (error) {
       // Ignore storage failures in restricted browser contexts.
+      setResultText(defaultResultText);
     }
   </script>
 </body>

@@ -4,6 +4,8 @@ const recordProgress = document.getElementById("recordProgress");
 
 const maxSeconds = 10;
 const resultToastFlag = "voiceResultToast";
+const resultTextMaxLength = 120;
+const defaultResultText = "你好，欢迎学习编程，今天我们一起来写一个有趣的小程序吧！";
 const circumference = 320.44;
 let startedAt = 0;
 let timerHandle = null;
@@ -23,7 +25,10 @@ function showState(nextState) {
   window.location.hash = nextState === "ready" ? "" : nextState;
 
   if (nextState === "result") {
-    showFailureToastFromFlag();
+    const shouldShowFailure = showFailureToastFromFlag();
+    if (!shouldShowFailure) {
+      setResultText(defaultResultText);
+    }
   }
 }
 
@@ -89,14 +94,22 @@ function resetToReady() {
   showState("ready");
 }
 
+function getResultInput() {
+  return document.querySelector('[data-state="result"] textarea');
+}
+
+function setResultText(value) {
+  const resultInput = getResultInput();
+  if (resultInput) {
+    resultInput.value = value.slice(0, resultTextMaxLength);
+  }
+}
+
 function showFailureToast() {
   const toast = document.getElementById("failureToast");
   if (!toast) return;
 
-  const resultInput = document.querySelector('[data-state="result"] textarea');
-  if (resultInput) {
-    resultInput.value = "";
-  }
+  setResultText("");
 
   window.clearTimeout(toastHandle);
   toast.classList.add("is-visible");
@@ -113,11 +126,19 @@ function showFailureToastFromFlag() {
     if (sessionStorage.getItem(resultToastFlag) === "manual-finish") {
       sessionStorage.removeItem(resultToastFlag);
       window.setTimeout(showFailureToast, 120);
+      return true;
     }
   } catch (error) {
     // Ignore storage failures in restricted browser contexts.
   }
+  return false;
 }
+
+getResultInput()?.addEventListener("input", (event) => {
+  if (event.target.value.length > resultTextMaxLength) {
+    event.target.value = event.target.value.slice(0, resultTextMaxLength);
+  }
+});
 
 document.addEventListener("click", (event) => {
   const action = event.target.closest("[data-action]")?.dataset.action;

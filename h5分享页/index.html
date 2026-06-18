@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="icon" href="data:," />
     <title>语音转文字 - H5分享页</title>
-    <link rel="stylesheet" href="./styles.css?v=20260618-se-fit" />
+    <link rel="stylesheet" href="./styles.css?v=20260618-result-limit" />
   </head>
   <body>
     <main class="viewport" aria-label="语音转文字H5分享页">
@@ -133,7 +133,7 @@
           <h1 class="panel-title">识别结果</h1>
 
           <label class="result-box">
-            <textarea aria-label="识别结果">你好，欢迎学习编程，今天我们一起来写一个有趣的小程序吧！</textarea>
+            <textarea aria-label="识别结果" maxlength="120">你好，欢迎学习编程，今天我们一起来写一个有趣的小程序吧！</textarea>
           </label>
 
         </div>
@@ -147,6 +147,6 @@
       <div class="toast" id="failureToast" role="status" aria-live="polite" aria-hidden="true">识别失败了，请稍后重试～</div>
     </main>
 
-    <script src="./script.js?v=20260618-se-fit"></script>
+    <script src="./script.js?v=20260618-result-limit"></script>
   </body>
 </html>
