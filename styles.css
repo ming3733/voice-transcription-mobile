@@ -13,11 +13,18 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+html {
+  --stage-width: 12.8;
+  --stage-height: 7.2;
+  font-size: min(calc((100vw - 1px) / var(--stage-width)), calc((100dvh - 1px) / var(--stage-height)));
+}
+
 body {
   min-height: 100vh;
   display: grid;
   place-items: center;
   overflow: auto;
+  overscroll-behavior: none;
 }
 
 button {
@@ -25,8 +32,8 @@ button {
 }
 
 .viewport {
-  width: 1280px;
-  height: 720px;
+  width: 12.8rem;
+  height: 7.2rem;
   position: relative;
   overflow: hidden;
   background: #ffffff;
@@ -34,8 +41,8 @@ button {
 
 .stage {
   position: relative;
-  width: 1280px;
-  height: 720px;
+  width: 12.8rem;
+  height: 7.2rem;
   overflow: hidden;
   background:
     linear-gradient(180deg, rgba(129, 140, 248, 0.82) 0%, rgba(116, 128, 255, 0.88) 100%),
@@ -56,8 +63,8 @@ button {
 .workspace-bg {
   left: 0;
   top: 0;
-  width: 1280px;
-  height: 720px;
+  width: 12.8rem;
+  height: 7.2rem;
   object-fit: cover;
 }
 
@@ -66,57 +73,57 @@ button {
 }
 
 .center-card {
-  left: 168px;
-  top: 111px;
-  width: 944px;
-  height: 498px;
-  border-radius: 16px;
+  left: 1.68rem;
+  top: 1.11rem;
+  width: 9.44rem;
+  height: 4.98rem;
+  border-radius: 0.16rem;
   object-fit: cover;
-  box-shadow: 0 16px 28px rgba(44, 94, 175, 0.14);
+  box-shadow: 0 0.16rem 0.28rem rgba(44, 94, 175, 0.14);
 }
 
 .phone-surface {
-  left: 192px;
-  top: 140px;
-  width: 896px;
-  height: 442px;
+  left: 1.92rem;
+  top: 1.4rem;
+  width: 8.96rem;
+  height: 4.42rem;
   background: url("./assets/beijing.png") center / 100% 100% no-repeat;
   z-index: 4;
 }
 
 .mobile-shell {
-  left: 192px;
-  top: 140px;
-  width: 896px;
-  height: 441.313px;
+  left: 1.92rem;
+  top: 1.4rem;
+  width: 8.96rem;
+  height: 4.41313rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0 12px 18px rgba(49, 137, 255, 0.26));
+  filter: drop-shadow(0 0.12rem 0.18rem rgba(49, 137, 255, 0.26));
   display: none;
   z-index: 3;
 }
 
 .mobile-shell img {
   position: relative;
-  width: 441.313px;
-  height: 896px;
+  width: 4.41313rem;
+  height: 8.96rem;
   max-width: none;
   transform: rotate(-90deg);
 }
 
 .primary-action {
   position: absolute;
-  left: 540px;
-  top: 489px;
-  width: 200px;
-  height: 64px;
+  left: 5.4rem;
+  top: 4.89rem;
+  width: 2rem;
+  height: 0.64rem;
   border: 0;
-  border-radius: 100px;
+  border-radius: 1rem;
   background: #2694ff;
-  box-shadow: 0 6.687px 10.03px rgba(38, 148, 255, 0.3);
+  box-shadow: 0 0.06687rem 0.1003rem rgba(38, 148, 255, 0.3);
   color: #ffffff;
-  font-size: 28px;
+  font-size: 0.28rem;
   font-weight: 500;
   line-height: normal;
   text-align: center;
@@ -127,96 +134,96 @@ button {
 
 .primary-action:hover {
   background: #168aff;
-  box-shadow: 0 10px 18px rgba(38, 148, 255, 0.34);
-  transform: translateY(-1px);
+  box-shadow: 0 0.1rem 0.18rem rgba(38, 148, 255, 0.34);
+  transform: translateY(-0.01rem);
 }
 
 .primary-action:active {
   background: #0e7feb;
-  box-shadow: 0 4px 8px rgba(38, 148, 255, 0.28);
-  transform: translateY(1px) scale(0.985);
+  box-shadow: 0 0.04rem 0.08rem rgba(38, 148, 255, 0.28);
+  transform: translateY(0.01rem) scale(0.985);
 }
 
 .voice-visual {
   position: absolute;
-  left: 550px;
-  top: 160px;
-  width: 180px;
-  height: 180px;
+  left: 5.5rem;
+  top: 1.6rem;
+  width: 1.8rem;
+  height: 1.8rem;
   animation: floatMic 2.5s ease-in-out infinite;
   z-index: 5;
 }
 
 .mic-shadow {
   position: absolute;
-  left: 25px;
-  top: 140px;
-  width: 130px;
-  height: 24px;
+  left: 0.25rem;
+  top: 1.4rem;
+  width: 1.3rem;
+  height: 0.24rem;
   background: radial-gradient(ellipse at center, rgba(70, 145, 250, 0.1) 0%, rgba(70, 145, 250, 0) 50%);
 }
 
 .mic-orb {
   position: absolute;
-  left: 40px;
-  top: 40px;
-  width: 100px;
-  height: 100px;
+  left: 0.4rem;
+  top: 0.4rem;
+  width: 1rem;
+  height: 1rem;
   display: grid;
   place-items: center;
-  border-radius: 99px;
+  border-radius: 0.99rem;
   background: linear-gradient(135deg, rgb(83, 150, 255) 0%, rgb(117, 101, 255) 100%);
-  filter: drop-shadow(0 11.455px 13.091px rgba(56, 189, 248, 0.12));
+  filter: drop-shadow(0 0.11455rem 0.13091rem rgba(56, 189, 248, 0.12));
 }
 
 .mic-orb img {
   display: block;
-  width: 54px;
-  height: 54px;
+  width: 0.54rem;
+  height: 0.54rem;
   pointer-events: none;
   user-select: none;
 }
 
 .copy-block {
   position: absolute;
-  left: 412px;
-  top: 340px;
-  width: 456px;
-  height: 64px;
+  left: 4.12rem;
+  top: 3.4rem;
+  width: 4.56rem;
+  height: 0.64rem;
   text-align: center;
   z-index: 5;
 }
 
 .copy-block h1 {
   color: #1f2937;
-  font-size: 28px;
+  font-size: 0.28rem;
   font-weight: 500;
-  line-height: 28px;
+  line-height: 0.28rem;
 }
 
 .copy-block p {
-  margin-top: 16px;
+  margin-top: 0.16rem;
   color: #6b7280;
-  font-size: 20px;
+  font-size: 0.2rem;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 0.2rem;
 }
 
 .recording-visual {
   position: absolute;
-  left: 560px;
-  top: 160px;
-  width: 160px;
-  height: 160px;
+  left: 5.6rem;
+  top: 1.6rem;
+  width: 1.6rem;
+  height: 1.6rem;
   z-index: 5;
 }
 
 .recording-mic-wrap {
   position: absolute;
-  left: 29px;
-  top: 29px;
-  width: 102px;
-  height: 102px;
+  left: 0.29rem;
+  top: 0.29rem;
+  width: 1.02rem;
+  height: 1.02rem;
   animation: pulseRing 1.8s ease-in-out infinite;
 }
 
@@ -224,8 +231,8 @@ button {
   position: absolute;
   left: 0;
   top: 0;
-  width: 102px;
-  height: 102px;
+  width: 1.02rem;
+  height: 1.02rem;
   transform: rotate(-90deg);
   pointer-events: none;
 }
@@ -250,83 +257,83 @@ button {
 
 .recording-mic-core {
   position: absolute;
-  left: 7px;
-  top: 7px;
-  width: 88px;
-  height: 88px;
+  left: 0.07rem;
+  top: 0.07rem;
+  width: 0.88rem;
+  height: 0.88rem;
   display: grid;
   place-items: center;
   border-radius: 50%;
   background: linear-gradient(135deg, #5396ff 0%, #7565ff 100%);
-  filter: drop-shadow(0 10px 12px rgba(56, 189, 248, 0.12));
+  filter: drop-shadow(0 0.1rem 0.12rem rgba(56, 189, 248, 0.12));
 }
 
 .recording-mic-core img {
   display: block;
-  width: 54px;
-  height: 54px;
+  width: 0.54rem;
+  height: 0.54rem;
   pointer-events: none;
   user-select: none;
 }
 
 .listen-pill {
   position: absolute;
-  left: 587px;
-  top: 316px;
-  width: 106px;
-  height: 29px;
+  left: 5.87rem;
+  top: 3.16rem;
+  width: 1.06rem;
+  height: 0.29rem;
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 0 14px;
-  border-radius: 9999px;
+  gap: 0.06rem;
+  padding: 0 0.14rem;
+  border-radius: 99.99rem;
   background: rgba(56, 189, 248, 0.12);
   color: #0284c7;
-  font-size: 12px;
+  font-size: 0.12rem;
   font-weight: 600;
   white-space: nowrap;
   z-index: 5;
 }
 
 .listen-pill span {
-  width: 8px;
-  height: 8px;
+  width: 0.08rem;
+  height: 0.08rem;
   flex: 0 0 auto;
-  border-radius: 4px;
+  border-radius: 0.04rem;
   background: #38bdf8;
   animation: blinkDot 1.2s ease-in-out infinite;
 }
 
 .timer-line {
   position: absolute;
-  left: 585px;
-  top: 357px;
-  height: 34px;
+  left: 5.85rem;
+  top: 3.57rem;
+  height: 0.34rem;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.08rem;
   color: #6b7280;
-  font-size: 16px;
+  font-size: 0.16rem;
   font-weight: 500;
-  line-height: 34px;
+  line-height: 0.34rem;
   white-space: nowrap;
   z-index: 5;
 }
 
 .timer-line strong {
   color: #1f2937;
-  font-size: 20px;
+  font-size: 0.2rem;
   font-weight: 600;
-  letter-spacing: -1px;
+  letter-spacing: 0;
 }
 
 .waveform,
 .waveform-video {
   position: absolute;
-  left: 460px;
-  top: 401px;
-  width: 360px;
-  height: 64px;
+  left: 4.6rem;
+  top: 4.01rem;
+  width: 3.6rem;
+  height: 0.64rem;
   object-fit: cover;
   pointer-events: none;
   user-select: none;
@@ -348,8 +355,8 @@ button {
 }
 
 .loading-icon {
-  width: 32px;
-  height: 32px;
+  width: 0.32rem;
+  height: 0.32rem;
   display: none;
   pointer-events: none;
   user-select: none;
@@ -368,9 +375,9 @@ button {
   position: absolute;
   left: 0;
   right: 0;
-  top: 168px;
+  top: 1.68rem;
   color: #1f2937;
-  font-size: 32px;
+  font-size: 0.32rem;
   font-weight: 600;
   line-height: normal;
   text-align: center;
@@ -379,13 +386,13 @@ button {
 
 .result-box {
   position: absolute;
-  left: 290px;
-  top: 237px;
-  width: 700px;
-  height: 224px;
+  left: 2.9rem;
+  top: 2.37rem;
+  width: 7rem;
+  height: 2.24rem;
   display: block;
-  border: 1px solid #bfdfff;
-  border-radius: 32px;
+  border: 0.01rem solid #bfdfff;
+  border-radius: 0.32rem;
   background: #ffffff;
   overflow: hidden;
   z-index: 5;
@@ -397,27 +404,27 @@ button {
   border: 0;
   outline: 0;
   resize: none;
-  padding: 24px;
+  padding: 0.24rem;
   background: transparent;
   color: #141414;
-  font: 400 28px/1.42 -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+  font: 400 0.28rem/1.42 -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
 }
 
 .result-box:focus-within {
   border-color: #78bdff;
-  box-shadow: 0 0 0 4px rgba(38, 148, 255, 0.12);
+  box-shadow: 0 0 0 0.04rem rgba(38, 148, 255, 0.12);
 }
 
 .secondary-action,
 .confirm-action {
   position: absolute;
-  top: 489px;
-  width: 200px;
-  height: 64px;
+  top: 4.89rem;
+  width: 2rem;
+  height: 0.64rem;
   border: 0;
-  border-radius: 9999px;
+  border-radius: 99.99rem;
   color: #ffffff;
-  font-size: 28px;
+  font-size: 0.28rem;
   font-weight: 500;
   line-height: normal;
   text-align: center;
@@ -427,32 +434,62 @@ button {
 }
 
 .secondary-action {
-  left: 428px;
+  left: 4.28rem;
   background: #ff9928;
-  box-shadow: 0 4px 6px rgba(255, 153, 40, 0.3);
+  box-shadow: 0 0.04rem 0.06rem rgba(255, 153, 40, 0.3);
 }
 
 .confirm-action {
-  left: 652px;
+  left: 6.52rem;
   background: #2694ff;
-  box-shadow: 0 6.687px 10.03px rgba(38, 148, 255, 0.3);
+  box-shadow: 0 0.06687rem 0.1003rem rgba(38, 148, 255, 0.3);
 }
 
 .secondary-action:hover,
 .confirm-action:hover {
-  transform: translateY(-1px);
+  transform: translateY(-0.01rem);
 }
 
 .confirm-action:hover {
-  transform: translateY(-1px);
+  transform: translateY(-0.01rem);
 }
 
 .secondary-action:active {
-  transform: translateY(1px) scale(0.985);
+  transform: translateY(0.01rem) scale(0.985);
 }
 
 .confirm-action:active {
-  transform: translateY(1px) scale(0.985);
+  transform: translateY(0.01rem) scale(0.985);
+}
+
+.toast {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  min-height: 0.4rem;
+  width: fit-content;
+  max-width: calc(100% - 0.64rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.12rem 0.32rem;
+  border-radius: 0.08rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  font-size: 0.18rem;
+  font-weight: 400;
+  line-height: 0.24rem;
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: opacity 160ms ease;
+  z-index: 20;
+}
+
+.toast.is-visible {
+  opacity: 1;
 }
 
 @keyframes floatMic {
@@ -462,7 +499,7 @@ button {
   }
 
   50% {
-    transform: translateY(-7px);
+    transform: translateY(-0.07rem);
   }
 }
 

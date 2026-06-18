@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="icon" href="data:," />
+    <title>语音转文字 - H5分享页</title>
+    <link rel="stylesheet" href="./styles.css?v=20260618-toast-empty-title" />
+  </head>
+  <body>
+    <main class="viewport" aria-label="语音转文字H5分享页">
+      <section class="screen" data-state="ready" aria-label="准备录音">
+        <div class="nav-bar">
+          <button class="back-button" type="button" aria-label="返回">
+            <span></span>
+          </button>
+          <div class="nav-title">语音录音</div>
+        </div>
+
+        <div class="panel">
+          <h1 class="panel-title">语音录音</h1>
+
+          <div class="mic-visual ready-mic" aria-hidden="true">
+            <div class="mic-shadow"></div>
+            <div class="mic-core">
+              <img src="./assets/mic-icon.svg" alt="" />
+            </div>
+          </div>
+
+          <div class="copy">
+            <h2>准备录音</h2>
+            <p>点击「开始」后说话，我会把语<br />音转成文字</p>
+          </div>
+
+        </div>
+
+        <button class="primary-button" type="button" data-action="start">开始</button>
+      </section>
+
+      <section class="screen" data-state="recording" aria-label="录音中" hidden>
+        <div class="nav-bar">
+          <button class="back-button" type="button" aria-label="返回">
+            <span></span>
+          </button>
+          <div class="nav-title">语音录音</div>
+        </div>
+
+        <div class="panel">
+          <h1 class="panel-title">语音录音</h1>
+
+          <div class="mic-visual recording-mic" aria-hidden="true">
+            <div class="mic-shadow"></div>
+            <svg class="record-progress" viewBox="0 0 120 120">
+              <circle class="record-track" cx="60" cy="60" r="51"></circle>
+              <circle class="record-value" id="recordProgress" cx="60" cy="60" r="51"></circle>
+            </svg>
+            <div class="mic-core">
+              <img src="./assets/mic-icon.svg" alt="" />
+            </div>
+          </div>
+
+          <div class="listen-pill">
+            <span></span>
+            正在聆听...
+          </div>
+
+          <div class="timer-line" aria-label="录音计时">
+            <strong id="recordTimer">00:00</strong>
+            <span>/ 00:10</span>
+          </div>
+
+          <video class="waveform-video" src="./assets/waveform.mp4" autoplay muted loop playsinline aria-hidden="true"></video>
+
+        </div>
+
+        <button class="primary-button" type="button" data-action="finish">
+          <span class="button-label">完成</span>
+          <img class="button-loading" src="./assets/loading-spinner.svg" alt="" />
+        </button>
+      </section>
+
+      <section class="screen" data-state="loading" aria-label="录音转写中" hidden>
+        <div class="nav-bar">
+          <button class="back-button" type="button" aria-label="返回">
+            <span></span>
+          </button>
+          <div class="nav-title">语音录音</div>
+        </div>
+
+        <div class="panel">
+          <h1 class="panel-title">语音录音</h1>
+
+          <div class="mic-visual recording-mic" aria-hidden="true">
+            <div class="mic-shadow"></div>
+            <svg class="record-progress" viewBox="0 0 120 120">
+              <circle class="record-track" cx="60" cy="60" r="51"></circle>
+              <circle class="record-value is-complete" cx="60" cy="60" r="51"></circle>
+            </svg>
+            <div class="mic-core">
+              <img src="./assets/mic-icon.svg" alt="" />
+            </div>
+          </div>
+
+          <div class="listen-pill">
+            <span></span>
+            正在聆听...
+          </div>
+
+          <div class="timer-line" aria-label="录音计时">
+            <strong>00:10</strong>
+            <span>/ 00:10</span>
+          </div>
+
+          <video class="waveform-video" src="./assets/waveform.mp4" autoplay muted loop playsinline aria-hidden="true"></video>
+
+        </div>
+
+        <button class="primary-button is-loading" type="button" disabled>
+          <span class="button-label">完成</span>
+          <img class="button-loading" src="./assets/loading-spinner.svg" alt="" />
+        </button>
+      </section>
+
+      <section class="screen" data-state="result" aria-label="识别结果" hidden>
+        <div class="nav-bar">
+          <button class="back-button" type="button" aria-label="返回">
+            <span></span>
+          </button>
+          <div class="nav-title">识别结果</div>
+        </div>
+
+        <div class="panel">
+          <h1 class="panel-title">识别结果</h1>
+
+          <label class="result-box">
+            <textarea aria-label="识别结果">你好，欢迎学习编程，今天我们一起来写一个有趣的小程序吧！</textarea>
+          </label>
+
+        </div>
+
+        <div class="result-actions">
+          <button class="secondary-button" type="button" data-action="rerecord">重新录音</button>
+          <button class="primary-button compact" type="button" data-action="confirm">确认</button>
+        </div>
+      </section>
+
+      <div class="toast" id="failureToast" role="status" aria-live="polite" aria-hidden="true">识别失败了，请稍后重试～</div>
+    </main>
+
+    <script src="./script.js?v=20260618-toast-empty-title"></script>
+  </body>
+</html>

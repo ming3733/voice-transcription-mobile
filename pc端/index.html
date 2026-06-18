@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="icon" href="data:,">
+  <title>语音转文字</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: grid;
+      min-height: 100vh;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .viewport {
+      width: 1280px;
+      height: 720px;
+      position: relative;
+      overflow: hidden;
+      background: #ffffff;
+      transform-origin: center center;
+      transform: scale(min(calc(100vw / 1280), calc(100vh / 720)));
+    }
+
+    .stage {
+      position: relative;
+      width: 1280px;
+      height: 720px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    .bg,
+    .phone-shell,
+    .phone-panel,
+    .mic-icon {
+      position: absolute;
+      display: block;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .bg {
+      inset: 0;
+      width: 1280px;
+      height: 720px;
+      object-fit: cover;
+    }
+
+    .phone-shell {
+      left: 473px;
+      top: 64px;
+      width: 335px;
+      height: 592px;
+      object-fit: cover;
+    }
+
+    .phone-panel {
+      left: 508px;
+      top: 91px;
+      width: 264px;
+      height: 536px;
+    }
+
+    .title {
+      position: absolute;
+      left: 604px;
+      top: 119px;
+      width: 72px;
+      height: 24px;
+      color: #1f2937;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 24px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .visual {
+      position: absolute;
+      left: 560px;
+      top: 175px;
+      width: 160px;
+      height: 160px;
+      animation: floatMic 2.4s ease-in-out infinite;
+    }
+
+    .visual-shadow {
+      position: absolute;
+      left: 21.82px;
+      top: 122.18px;
+      width: 116.36px;
+      height: 29.09px;
+      background: radial-gradient(ellipse at center, rgba(70, 145, 250, 0.1) 0%, rgba(70, 145, 250, 0) 50%);
+    }
+
+    .visual-ring {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50px;
+      display: grid;
+      place-items: center;
+    }
+
+    .mic-button {
+      position: relative;
+      width: 88px;
+      height: 88px;
+      border-radius: 88px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #3d98ff 0%, #7a7dff 100%);
+      filter: drop-shadow(0 10.182px 11.636px rgba(56, 189, 248, 0.12));
+    }
+
+    .mic-icon {
+      width: 48px;
+      height: 48px;
+    }
+
+    .copy {
+      position: absolute;
+      left: 534px;
+      top: 351px;
+      width: 212px;
+      text-align: center;
+    }
+
+    .copy h1 {
+      color: #1f2937;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 20px;
+    }
+
+    .copy p {
+      margin-top: 20px;
+      color: #6b7280;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+    }
+
+    .start {
+      position: absolute;
+      left: 560px;
+      top: 562px;
+      width: 160px;
+      height: 48px;
+      border: 0;
+      border-radius: 9999px;
+      background: #2694ff;
+      box-shadow: 0 4px 6px rgba(38, 148, 255, 0.3);
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 18px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    .start:hover {
+      background: #1688f7;
+      box-shadow: 0 8px 14px rgba(38, 148, 255, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .start:active {
+      background: #0f7ee8;
+      box-shadow: 0 2px 5px rgba(38, 148, 255, 0.28);
+      transform: translateY(1px) scale(0.98);
+    }
+
+    @keyframes floatMic {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-7px);
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <main class="viewport" aria-label="语音转文字设计稿还原">
+    <section class="stage">
+      <img class="bg" src="./images/image-1.png" alt="">
+      <img class="phone-shell" src="./images/image-2.png" alt="">
+      <img class="phone-panel" src="./images/phone-panel.svg" alt="">
+
+      <div class="title">语音录音</div>
+
+      <div class="visual" aria-hidden="true">
+        <div class="visual-shadow"></div>
+        <div class="visual-ring">
+          <div class="mic-button">
+            <img class="mic-icon" src="./images/mic-icon.svg" alt="">
+          </div>
+        </div>
+      </div>
+
+      <div class="copy">
+        <h1>准备录音</h1>
+        <p>点击「开始」后说话，我会把语音转成文字</p>
+      </div>
+
+      <button class="start" type="button" id="startBtn">开始</button>
+    </section>
+  </main>
+  <script>
+    document.getElementById("startBtn").addEventListener("click", function () {
+      window.location.href = "./step2-recording.html";
+    });
+  </script>
+</body>
+</html>

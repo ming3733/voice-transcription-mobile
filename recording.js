@@ -12,6 +12,18 @@ function formatTime(value) {
   return `00:${String(value).padStart(2, "0")}`;
 }
 
+function setResultToastFlag(shouldShow) {
+  try {
+    if (shouldShow) {
+      sessionStorage.setItem("voiceResultToast", "manual-finish");
+    } else {
+      sessionStorage.removeItem("voiceResultToast");
+    }
+  } catch (error) {
+    // Ignore storage failures in restricted browser contexts.
+  }
+}
+
 function goResult() {
   if (finished) return;
   finished = true;
@@ -23,15 +35,16 @@ function setProgress(progress) {
   recordProgress.style.strokeDashoffset = String(circumference * (1 - safeProgress));
 }
 
-function startLoadingThenResult() {
+function startLoadingThenResult(shouldShowToast = false) {
   if (finished || loading) return;
+  setResultToastFlag(shouldShowToast);
   loading = true;
   finishButton.classList.add("is-loading");
   finishButton.disabled = true;
   window.setTimeout(goResult, 2000);
 }
 
-finishButton.addEventListener("click", startLoadingThenResult);
+finishButton.addEventListener("click", () => startLoadingThenResult(true));
 
 const timer = window.setInterval(() => {
   if (finished || loading) {
@@ -48,7 +61,7 @@ const timer = window.setInterval(() => {
     window.clearInterval(timer);
     recordTimer.textContent = formatTime(maxSeconds);
     setProgress(1);
-    startLoadingThenResult();
+    startLoadingThenResult(false);
   }
 }, 100);
 
